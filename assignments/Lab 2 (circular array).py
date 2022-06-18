@@ -4,7 +4,7 @@ class CircularArray:
     self.start = st
     self.size = sz
     self.cir = []
-
+    #someting
     self.cir=[None]*len(lin)
     index = self.start
     i=0
