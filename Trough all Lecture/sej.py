@@ -4,10 +4,7 @@ Created on Tue Oct 27 22:37:02 2020
 @author: SIFAT E JAHAN
 """
 #------------------------------Node Class-----------------------------------#
-
-from tkinter import N
-
-
+    
 class Node:
 
     def __init__(self, value, next):
@@ -25,7 +22,7 @@ class LinkedList:
         self.head = None
         tail = None
         for i in a:
-            n= node.Node(i,None)
+            n= Node(i,None)
             if self.head is None:
                 self.head = n
                 tail = n
