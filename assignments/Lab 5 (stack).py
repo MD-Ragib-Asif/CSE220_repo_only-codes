@@ -1,3 +1,6 @@
+from tkinter import N
+
+
 class ArrayStack:
     def __init__(self):
         self.cap = 25
@@ -32,45 +35,48 @@ class ArrayStack:
     #     return self.stack
 
 obj1 = ArrayStack()
-# obj1.push(6)
-# # print(obj1.peek())
-# obj1.push(4)
-# # print(obj1.print())
-# print(obj1.pop())
-# print(obj1.peek())
+obj1.push(6)
+print(obj1.peek())
+obj1.push(4)
+# print(obj1.print())
+print(obj1.pop())
+print(obj1.peek())
 # print(obj1.print())
 
-# string = "1+2*(3/4)"
-# string = "1+2*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14"
-# string = "1+2*[3*3+{4–5(6(7/8/9)+10)}–11+(12*8)/{13+13}]+14"
-string = "1+2]*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14"
+#--------------------------------------------------------------------------------
+print("GAP")
+#--------------------------------------------------------------------------------
 
-size = len(string)
-opened = ['[', '{', '(']
-closed = [']', '}', ')']
-leave=0
-for i in range(len(string)):
-    if leave!=0:
-        break
-    if string[i] in opened:
-        obj1.push(string[i])
-    elif string[i] in closed:
-        check = obj1.peek()
-        for j in range(len(closed)):
-            if string[i] == closed[j]:
-                if check == opened[j]:
-                    obj1.pop()
-                else:
-                    print(f'This expression is NOT correct. \nError at character # {i+1}. ‘{string[i]}‘- not opened.')
-                    leave+=1
-                    break
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
 
-if leave==0:
+class LinkedStack:
+    head = None
 
-    if obj1.peek()!=None:
-        for k in range(len(string)):
-            if string[k]==obj1.peek():
-                idx=k
-        print(f'This expression is NOT correct. \nError at character # {idx+1}. ‘{obj1.peek()}‘- not closed.')
-    else:
-        print("This expression is correct.")
+    def push(self, value):
+        n = Node(value)
+        if LinkedStack.head == None:
+            LinkedStack.head = n
+        else:
+            n.next = LinkedStack.head
+            LinkedStack.head = n
+
+    def peek(self):
+        return LinkedStack.head.value
+
+    def pop(self):
+        temp = LinkedStack.head
+        next = LinkedStack.head.next
+        LinkedStack.head = next
+        return temp.value
+
+obj2 = LinkedStack()
+obj2.push(6)
+print(obj2.peek())
+obj2.push(4)
+# print(obj2.print())
+print(obj2.pop())
+print(obj2.peek())
+# print(obj2.print())
