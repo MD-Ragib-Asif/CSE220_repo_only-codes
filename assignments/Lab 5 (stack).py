@@ -38,6 +38,8 @@ obj1.push(4)
 # print(obj1.print())
 print(obj1.pop())
 print(obj1.peek())
+print(obj1.pop())
+print(obj1.peek())
 # print(obj1.print())
 
 #--------------------------------------------------------------------------------
@@ -61,7 +63,10 @@ class LinkedStack:
             LinkedStack.head = n
 
     def peek(self):
-        return LinkedStack.head.value
+        if LinkedStack.head == None:
+            return None
+        else:
+            return LinkedStack.head.value
 
     def pop(self):
         temp = LinkedStack.head
@@ -70,25 +75,87 @@ class LinkedStack:
         return temp.value
 
 obj2 = LinkedStack()
+# obj2.peek()
 obj2.push(6)
 print(obj2.peek())
 obj2.push(4)
 # print(obj2.print())
 print(obj2.pop())
 print(obj2.peek())
+print(obj2.pop())
+# print('error'.format(obj2.peek()))
 # print(obj2.print())
 
 #--------------------------------------------------------
 string1 = "1+2*(3/4)"
 string2 = "1+2*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14"
 string3 = "1+2*[3*3+{4–5(6(7/8/9)+10)}–11+(12*8)/{13+13}]+14"
+string4 = "1+2]*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14"
 
 #--------------------------------------------------------
 
-def ArrayBraket():
-    pass
+def ArrayBraket(string):
+    stack_obj = ArrayStack()
+    pointer_obj = ArrayStack()
+    counter = 0
+
+    open = ['(', '[', '{']
+    close = [')', ']', '}']
+
+    for i in string:
+        if stack_obj.peek() == None and i in close:
+            return f"{string} \nThis expression is NOT correct. \nEror at #{counter+1}. '{i}'- not opened."
+
+        if stack_obj.peek() == None and i in open:
+            stack_obj.push(i)
+            pointer_obj.push(counter)
+
+        elif stack_obj.peek() in open and i in open:
+            stack_obj.push(i)
+            pointer_obj.push(counter)
+        
+        if stack_obj.peek() =='(' and i == ')' or stack_obj.peek() =='[' and i == ']' or stack_obj.peek() =='{' and i == '}':
+            stack_obj.pop()
+            pointer_obj.pop()
+        counter += 1
+        # print(stack.array)
+    if stack_obj.peek() == None: 
+        return f'{string} \nThis expression is correct.'
+    else: 
+        return f'{string} \nThis expression is not correct \nEror at #{pointer_obj.peek()+1}. {stack_obj.peek()} was not closed'
+
+print(ArrayBraket(string2))
 
 #--------------------------------------------------------
 
-def LinkedBraket():
-    pass
+def LinkedBraket(string):
+    stack_obj = LinkedStack()
+    pointer_obj = LinkedStack()
+    counter = 0
+
+    open = ['(', '[', '{']
+    close = [')', ']', '}']
+
+    for i in string:
+        if stack_obj.peek() == LinkedStack and i in close:
+            return f"{string} \nThis expression is NOT correct. \nEror at #{counter+1}. '{i}'- not opened."
+
+        if stack_obj.peek() == LinkedStack and i in open:
+            stack_obj.push(i)
+            pointer_obj.push(counter)
+
+        elif stack_obj.peek() in open and i in open:
+            stack_obj.push(i)
+            pointer_obj.push(counter)
+        
+        if stack_obj.peek() =='(' and i == ')' or stack_obj.peek() =='[' and i == ']' or stack_obj.peek() =='{' and i == '}':
+            stack_obj.pop()
+            pointer_obj.pop()
+        counter += 1
+        # print(stack.array)
+    if stack_obj.peek() == LinkedStack: 
+        return f'{string} \nThis expression is correct.'
+    else: 
+        return f'{string} \nThis expression is not correct \nEror at #{pointer_obj.peek()+1}. {stack_obj.peek()} was not closed'
+
+print(LinkedBraket(string4))
