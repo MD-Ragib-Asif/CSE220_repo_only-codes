@@ -1,3 +1,7 @@
+#Name   : Md. Ragib Asif
+#ID     : 21101083
+#Section: 06
+
 class ArrayStack:
     def __init__(self):
         self.cap = 25
