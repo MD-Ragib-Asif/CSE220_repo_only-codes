@@ -1,0 +1,5 @@
+rint(obj1.pop())
+print(obj1.pop())
+print(obj1.pop())
+print(obj1.pop())
+print(obj1.pop())

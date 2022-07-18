@@ -3,24 +3,22 @@
 #Section: 06
 
 class ArrayStack:
+    pointer = -1
     def __init__(self):
-        self.cap = 25
+        self.cap = 50
         self.stack = [None]*self.cap
-        self.pointer = -1
+        
 
     def push(self, element):
-        if self.pointer < self.cap:
+        if self.pointer < self.cap-1:
             self.pointer += 1
             self.stack[self.pointer]= element
-            
         else:
-            return f'Stack overflowed'
+            print('Stack overflowed')
         
     def pop(self):
-        if self.pointer<-1:
+        if self.pointer==-1:
             return f'Stack underflowed'
-        elif self.pointer>=self.cap:
-            return f'Stack overflowed'
         else:
             value = self.stack[self.pointer]
             self.stack[self.pointer] = None
@@ -28,9 +26,24 @@ class ArrayStack:
             return value
     
     def peek(self):
-        if self.pointer<-1:
+        if self.pointer==-1:
             return f'Stack underflowed'
         return self.stack[self.pointer]
+
+# obj1 = ArrayStack()
+# obj1.push(5)
+# obj1.push(4)
+# obj1.push(3)
+# obj1.push(2)
+# obj1.push(1)
+# print(obj1.pop())
+# print(obj1.pop())
+# print(obj1.pop())
+# print(obj1.pop())
+# print(obj1.pop())
+# # print(obj1.peek())
+# print(obj1.pop())
+
 
 #----------------------------------------------------------------------------------------------------------------------
 class Node:
@@ -38,25 +51,25 @@ class Node:
         self.value = value
         self.next = None
 class LinkedStack:
-    cap = 25
+    cap = 50
     head = None
     pointer = -1
 
     def push(self, value):
-        if self.pointer < self.cap:
+        if self.pointer < self.cap-1:
+            self.pointer += 1
             n = Node(value)
             if self.head == None:
                 self.head = n
-                self.pointer += 1
             else:
                 n.next = self.head
                 self.head = n
-                self.pointer += 1
+                
         else:
-            return f'Stack overflowed'
+            print('Stack overflowed')
 
     def peek(self):
-        if self.pointer<-1:
+        if self.pointer == -1:
             return f'Stack underflowed'
         if self.head == None:
             return None
@@ -64,15 +77,29 @@ class LinkedStack:
             return self.head.value
 
     def pop(self):
-        if self.pointer<-1:
+        if self.pointer == -1:
             return f'Stack underflowed'
-        elif self.pointer>=self.cap:
-            return f'Stack overflowed'
+        
         temp = self.head
         next = self.head.next
         self.head = next
         self.pointer -= 1
         return temp.value
+
+# obj1 = LinkedStack()
+# obj1.push(5)
+# obj1.push(4)
+# obj1.push(3)
+# obj1.push(2)
+# obj1.push(1)
+# # obj1.push(7)
+# print(obj1.pop())
+# print(obj1.pop())
+# print(obj1.pop())
+# print(obj1.pop())
+# print(obj1.pop())
+# print(obj1.peek())
+# print(obj1.pop())
 
 #--------------------------------------------------------
 string1 = "1+2*(3/4)"
@@ -91,10 +118,10 @@ def ArrayBraket(string):
     close = [')', ']', '}']
 
     for i in string:
-        if stack_obj.peek() == None and i in close:
+        if stack_obj.peek() == 'Stack underflowed' and i in close:
             return f"{string} \nThis expression is NOT correct. \nEror at character # {counter}. '{i}'- not opened."
 
-        if stack_obj.peek() == None and i in open:
+        if stack_obj.peek() == 'Stack underflowed' and i in open:
             stack_obj.push(i)
             pointer_obj.push(counter)
 
@@ -107,13 +134,15 @@ def ArrayBraket(string):
             pointer_obj.pop()
         counter += 1
         # print(stack.array)
-    if stack_obj.peek() == None: 
+    if stack_obj.peek() == 'Stack underflowed': 
         return f'{string} \nThis expression is correct.'
     else: 
         return f"{string} \nThis expression is NOT correct. \nEror at character # {pointer_obj.peek()}. '{stack_obj.peek()}'- not closed."
 
-print(ArrayBraket(string1))
+print(ArrayBraket(string2))
 
+#--------------------------------------------------------
+print('**************************************')
 #--------------------------------------------------------
 
 def LinkedBraket(string):
@@ -129,7 +158,7 @@ def LinkedBraket(string):
             stack_obj.push(x)
             pointer_obj.push(counter)
         elif x in close:
-            if stack_obj.peek() == None:
+            if stack_obj.peek() == 'Stack underflowed':
                 return f"{string} \nThis expression is NOT correct. \nEror at character # {counter}. '{x}'- not opened."
             if stack_obj.peek()=='(' and x==')' or stack_obj.peek()=='[' and x==']' or stack_obj.peek()=='{' and x=='}':
                 stack_obj.pop()
@@ -138,9 +167,9 @@ def LinkedBraket(string):
                 break
     
         counter += 1
-    if stack_obj.peek() == None: 
+    if stack_obj.peek() == 'Stack underflowed': 
         return f'{string} \nThis expression is correct.'
     else: 
         return f"{string} \nThis expression is NOT correct. \nEror at character # {pointer_obj.peek()}. '{stack_obj.peek()}'- not closed."
-print(LinkedBraket(string4))
+print(LinkedBraket(string3))
 
