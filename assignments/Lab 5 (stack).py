@@ -37,28 +37,41 @@ class Node:
     def __init__(self, value):
         self.value = value
         self.next = None
-
 class LinkedStack:
+    cap = 25
     head = None
+    pointer = -1
 
     def push(self, value):
-        n = Node(value)
-        if self.head == None:
-            self.head = n
+        if self.pointer < self.cap:
+            n = Node(value)
+            if self.head == None:
+                self.head = n
+                self.pointer += 1
+            else:
+                n.next = self.head
+                self.head = n
+                self.pointer += 1
         else:
-            n.next = self.head
-            self.head = n
+            return f'Stack overflowed'
 
     def peek(self):
+        if self.pointer<-1:
+            return f'Stack underflowed'
         if self.head == None:
             return None
         else:
             return self.head.value
 
     def pop(self):
+        if self.pointer<-1:
+            return f'Stack underflowed'
+        elif self.pointer>=self.cap:
+            return f'Stack overflowed'
         temp = self.head
         next = self.head.next
         self.head = next
+        self.pointer -= 1
         return temp.value
 
 #--------------------------------------------------------
