@@ -1,0 +1,1 @@
+print("After newly install windows, the following command will be executed:")
