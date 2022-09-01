@@ -118,7 +118,7 @@ def array_series(n):
     q[j]=0
     y= x+y 
     x=q
-  print(y)
+  # print("Array: ",y)
   
   i =0        # this loop is to only match the output same as question
   for m in range(n):
@@ -164,14 +164,14 @@ def repetition(source):
   for j in source:
     if j not in array:
       array += [j]
-  print(array)
+  # print(array)
   
   empty_arr = [0]*len(array)
   for i in source:
     for k in range(len(array)):
       if i==array[k]:
         empty_arr[k]+=1
-  print(empty_arr)
+  # print(empty_arr)
 
   count = 0
   for l in range(len(empty_arr)):
