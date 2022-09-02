@@ -1,5 +1,8 @@
 #bubble sort
 
+from ast import Pass
+
+
 def bubble_sort(a):
     for i in range(len(a)-1):
         for j in range(len(a)-1-i):
@@ -202,11 +205,11 @@ class CirArray:
         return self.a[self.start]
     
 arr=[0]*10
-a1=CirArray(arr, 0, 0)
-a1.enqueue(1)
-a1.enqueue(2)
-a1.enqueue(3)
+# a1=CirArray(arr, 0, 0)
+# a1.enqueue(1)
+# a1.enqueue(2)
+# a1.enqueue(3)
 # a1.dequeue()
-print("value",a1.a)
-print("PEEK",a1.peek())
-print(a1.start)
+# print("value",a1.a)
+# print("PEEK",a1.peek())
+# print(a1.start)
