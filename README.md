@@ -1,6 +1,6 @@
 ### Dear BRACU people,
 If you are using this repo, then I would like to suggest you only use this in case of understanding. It's better to build your own understanding. So that you can tackle any data stacture onwards.
-Good Luck guys😀. <br />
+Good Luck you guys😀. <br />
 . <br />
 . <br />
 . <br />
